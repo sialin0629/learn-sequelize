@@ -49,7 +49,13 @@ class User extends Sequelize.Model {
     });
   }
   // 다른 모델과의 관계 정의
-  static associate(db) {}
+  static associate(db) {
+    db.User.hasMany(db.Comment, { foreignKey: 'commenter', sourceKey: 'id'});
+    // hasMany 메서드 -> User 모델과 Comment 모델 간의 일대다 관계 설정(User는 여러 개의 Comment를 가질 수 있음.)
+    // foreignKey: 외부키 이름을 지정, 'commenter' -> Commnet 모델의 'Commenter' 열이 외부 키로 사용됨.
+    // sourceKey: 기본 키 이름을 지정, 'id' -> User 모델의 'id' 열이 기본 키로 사용됨.
+  }
 };
+
 
 module.exports = User; // User 클래스를 외부로 내보냄.

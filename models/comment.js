@@ -36,6 +36,10 @@ class Comment extends Sequelize.Model {
   static associate(db) {
     // Comment 모델이 user 모델에 속한다는 관계를 정의
     db.Comment.belongsTo(db.User, { foreignKey: 'commenter', targetKey: 'id'});
+    // Comment 모델과 USer 모델 간의 일대다 관계를 설정
+    // belongsTo 메서드 -> Comment 모델이 User 모델에 속한다는 관계를 정의
+    // foreignKey: 외부키 이름을 지정, 'commenter' -> Commnet 모델의 'Commenter' 열이 외부 키로 사용됨.
+    // sourceKey: 기본 키 이름을 지정, 'id' -> User 모델의 'id' 열이 기본 키로 사용됨.
   }
 };
 
